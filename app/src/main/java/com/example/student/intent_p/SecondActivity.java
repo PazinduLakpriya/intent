@@ -9,13 +9,10 @@ import android.widget.TextView;
 
 public class SecondActivity extends AppCompatActivity {
 
-    int n1;
-    int n2;
-    TextView tv;
-    TextView tv2;
-    String fNum;
-    String sNum;
-    EditText num1, num2;
+    private int n1,n2,ans;
+    private TextView display;
+    private String input1,input2,displayAns;
+    private EditText num1, num2;
 
 
     @Override
@@ -23,47 +20,55 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
-        tv = findViewById(R.id.txtAns);
-
         num1 = findViewById(R.id.num1);
         num2 = findViewById(R.id.num2);
+        display = findViewById(R.id.txtAns);
+
+
 
         Intent intentSecActi = getIntent();
 
-        fNum = intentSecActi.getStringExtra("firstDigit");
-        sNum = intentSecActi.getStringExtra("secondDigit");
+        input1 = intentSecActi.getStringExtra(FirstActivity.number1);
+        input2 = intentSecActi.getStringExtra(FirstActivity.number2);
 
-        num1.setText(fNum);
-        num2.setText(sNum);
+        num1.setText(input1);
+        num2.setText(input2);
 
-        n1 = Integer.parseInt(fNum);
-        n2 = Integer.parseInt(sNum);
+        n1 = Integer.parseInt(input1);
+        n2 = Integer.parseInt(input2);
 
 
     }
 
 
-    public void add(View view) {
-        String message = n1+ " + "+n2+ " = "+(n1+n2);
-        tv.setText(message);
+    public void addNumbers(View view) {
+        ans = n1 + n2;
+        displayAns = input1+ " + "+input2+ " = "+ans;
+        displayAnswer(displayAns);
     }
 
-    public void sub(View view) {
-        String message = n1+ " - "+n2+ " = "+(n1-n2);
-        tv.setText(message);
-    }
-
-    public void multi(View view) {
-        String message = n1+ " * "+n2+ " = "+(n1*n2);
-        tv.setText(message);
-    }
-
-    public void div(View view) {
-        String message = n1+ " / "+n2+ " = "+(n1/n2);
-        tv.setText(message);
+    public void substracyNumbers(View view) {
+        ans = n1 - n2;
+        String message = input1+ " - "+input2+ " = "+ans;
+        displayAnswer(displayAns);
     }
 
 
+    public void multiplyNumbers(View view) {
+        ans = n1 * n2;
+        String message = input1+ " * "+input2+ " = "+ans;
+        displayAnswer(displayAns);
+    }
+
+    public void dividNumbers(View view) {
+        ans = n1 / n2;
+        String message = input1+ " / "+input2+ " = "+ans;
+        displayAnswer(displayAns);
+    }
+
+    public void displayAnswer(String displayAns) {
+       display.setText(displayAns);
+    }
 
 
 
